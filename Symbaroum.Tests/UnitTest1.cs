@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Symbaroum.Core.Common.Database;
 
 namespace Symbaroum.Tests
 {

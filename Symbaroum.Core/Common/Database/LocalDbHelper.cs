@@ -1,9 +1,8 @@
-using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 
-namespace Symbaroum.Tests
+namespace Symbaroum.Core.Common.Database
 {
     public static class LocalDbHelper
     {
