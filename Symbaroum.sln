@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Core", "Symbaroum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Api", "Symbaroum.Api\Symbaroum.Api.csproj", "{62054052-9D27-45ED-BBD3-324C6572898C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{AE6FD0D7-1E7E-4F43-9D63-D3152BB06471}"
+	ProjectSection(SolutionItems) = preProject
+		Script\createLocaldbInstance.ps1 = Script\createLocaldbInstance.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
