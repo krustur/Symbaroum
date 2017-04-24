@@ -1,86 +1,61 @@
+using System;
+using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Data.SqlLocalDb;
 using System.IO;
 using System.Reflection;
+using Autofac;
+using Symbaroum.Core.Infrastructure;
 
 namespace Symbaroum.Core.Common.Database
 {
     public static class LocalDbHelper
     {
-        public const string DbDirectory = "Data";
-        public const string LocalDbInstanceName = @"SymbLocalDb";
-
-        public static SqlConnection GetLocalDb(string dbName, bool deleteIfExists = false)
+        public static void DropDatabase(string connectionString)
         {
-            var outputFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DbDirectory);
-            var mdfFilename = dbName + ".mdf";
-            var dbFileName = Path.Combine(outputFolder, mdfFilename);
-            var logFileName = Path.Combine(outputFolder, $"{dbName}_log.ldf");
-            // Create Data Directory If It Doesn't Already Exist.
-            if (!Directory.Exists(outputFolder))
-            {
-                Directory.CreateDirectory(outputFolder);
-            }
+            const string dropDatabaseSql =
+                "if (select DB_ID('{0}')) is not null\r\n"
+                + "begin\r\n"
+                + "alter database [{0}] set offline with rollback immediate;\r\n"
+                + "alter database [{0}] set online;\r\n"
+                + "drop database [{0}];\r\n"
+                + "end";
 
-            // If the file exists, and we want to delete old data, remove it here and create a new database.
-            if (File.Exists(dbFileName) && deleteIfExists)
-            {
-                if (File.Exists(logFileName)) File.Delete(logFileName);
-                File.Delete(dbFileName);
-                CreateDatabase(dbName, dbFileName);
-            }
-            // If the database does not already exist, create it.
-            else if (!File.Exists(dbFileName))
-            {
-                CreateDatabase(dbName, dbFileName);
-            }
-
-            // Open newly created, or old database.
-            var connectionString = string.Format($@"Data Source=(LocalDB)\{LocalDbInstanceName};AttachDBFileName={dbFileName};Initial Catalog={dbName};Integrated Security=True;");
-            var connection = new SqlConnection(connectionString);
-            connection.Open();
-            return connection;
-        }
-
-        public static bool CreateDatabase(string dbName, string dbFileName)
-        {
-            var connectionString = $@"Data Source=(LocalDB)\{LocalDbInstanceName};Initial Catalog=master;Integrated Security=True";
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                var cmd = connection.CreateCommand();
-
-                DetachDatabase(dbName);
-
-                cmd.CommandText = $"CREATE DATABASE {dbName} ON (NAME = N'{dbName}', FILENAME = '{dbFileName}')";
-                cmd.ExecuteNonQuery();
-            }
-
-            if (File.Exists(dbFileName))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool DetachDatabase(string dbName)
-        {
             try
             {
-                var connectionString = $@"Data Source=(LocalDB)\{LocalDbInstanceName};Initial Catalog=master;Integrated Security=True";
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var cmd = connection.CreateCommand();
-                    cmd.CommandText = $"exec sp_detach_db '{dbName}'";
-                    cmd.ExecuteNonQuery();
 
-                    return true;
+                    var sqlToExecute = string.Format(dropDatabaseSql, connection.Database);
+
+                    var command = new SqlCommand(sqlToExecute, connection);
+
+                    Console.WriteLine("Dropping database");
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Database is dropped");
                 }
             }
-            catch
+            catch (SqlException sqlException)
             {
-                return false;
+                if (sqlException.Message.StartsWith("Cannot open database"))
+                {
+                    Console.WriteLine("Database does not exist.");
+                    return;
+                }
+                throw;
             }
+        }
+
+        public static void ForceInitialization(DomainContext domainContext)
+        {
+            var initializer = new MigrateDatabaseToLatestVersion<DomainContext, DomainContextMigrationsConfiguration>();
+
+            System.Data.Entity.Database.SetInitializer(initializer);
+
+            Console.WriteLine("Starting creating database");
+            domainContext.Database.Initialize(true);
+            Console.WriteLine("Database is created");
         }
     }
 }

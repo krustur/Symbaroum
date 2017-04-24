@@ -1,4 +1,7 @@
 ﻿#
 # CreateLocalDbInstance.ps1
 #
-sqllocaldb create SymbLocalDb
+SqlLocalDb stop SymbLocalDb
+#Remove-Item 'C:\users\krister\Symbaroum.mdf'
+#Remove-Item 'C:\users\krister\Symbaroum_log.ldf'
+SqlLocalDb create SymbLocalDb
