@@ -1,13 +1,8 @@
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Data.SqlClient;
-using System.Data.SqlLocalDb;
-using System.IO;
-using System.Reflection;
-using Autofac;
-using Symbaroum.Core.Infrastructure;
 
-namespace Symbaroum.Core.Common.Database
+namespace Symbaroum.Infrastructure.Database
 {
     public static class LocalDbHelper
     {
@@ -47,15 +42,15 @@ namespace Symbaroum.Core.Common.Database
             }
         }
 
-        public static void ForceInitialization(DomainContext domainContext)
-        {
-            var initializer = new MigrateDatabaseToLatestVersion<DomainContext, DomainContextMigrationsConfiguration>();
+        //public static void ForceInitialization(DomainContext domainContext)
+        //{
+        //    var initializer = new MigrateDatabaseToLatestVersion<DomainContext, DomainContextMigrationsConfiguration>();
 
-            System.Data.Entity.Database.SetInitializer(initializer);
+        //    System.Data.Entity.Database.SetInitializer(initializer);
 
-            Console.WriteLine("Starting creating database");
-            domainContext.Database.Initialize(true);
-            Console.WriteLine("Database is created");
-        }
+        //    Console.WriteLine("Starting creating database");
+        //    domainContext.Database.Initialize(true);
+        //    Console.WriteLine("Database is created");
+        //}
     }
 }

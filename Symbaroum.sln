@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Tests", "Symbaroum.Tests\Symbaroum.Tests.csproj", "{940FE1AE-7415-438E-805C-9A62184CC5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Core", "Symbaroum.Core\Symbaroum.Core.csproj", "{E0DCFFB3-AEF1-4593-9D86-FC56402F2BC6}"
-EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Symbaroum.PowerShell", "Symbaroum.PowerShell\Symbaroum.PowerShell.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{2DCAF219-831D-4D0F-827B-0E65493CAC3C}"
@@ -15,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Database", "Symbaroum.Database\Symbaroum.Database.csproj", "{515A51A1-A7C6-457F-974B-08CAA5F59A04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Infrastructure", "Symbaroum.Infrastructure\Symbaroum.Infrastructure.csproj", "{97C38796-9384-4E64-8E68-6E401EFCED31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +26,6 @@ Global
 		{940FE1AE-7415-438E-805C-9A62184CC5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{940FE1AE-7415-438E-805C-9A62184CC5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{940FE1AE-7415-438E-805C-9A62184CC5A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0DCFFB3-AEF1-4593-9D86-FC56402F2BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0DCFFB3-AEF1-4593-9D86-FC56402F2BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0DCFFB3-AEF1-4593-9D86-FC56402F2BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0DCFFB3-AEF1-4593-9D86-FC56402F2BC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,6 +34,10 @@ Global
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C38796-9384-4E64-8E68-6E401EFCED31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C38796-9384-4E64-8E68-6E401EFCED31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C38796-9384-4E64-8E68-6E401EFCED31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C38796-9384-4E64-8E68-6E401EFCED31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

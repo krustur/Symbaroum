@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.EntityFrameworkCore;
+using Symbaroum.Database.Configuration;
 
 namespace Symbaroum.Database
 {
@@ -30,14 +32,19 @@ namespace Symbaroum.Database
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var pathToDoc = Configuration["Swagger:FileName"];
+            services.AddOptions();
+
+            var swaggerConfig = services.ConfigureAddScoped<SwaggerConfig>(Configuration.GetSection("Swagger"));            
+            var domainContextConfig = services.ConfigureAddScoped<DomainContextConfig>(Configuration.GetSection("DomainContext"));
 
             // Add framework services.
             services.AddMvc();
-
+            services.AddDbContext<DomainContext>(o =>
+            {
+                o.UseSqlServer(domainContextConfig.ConnectionString);
+            });
             services.AddSwaggerGen(x =>
             {
-                //x.ur
             });
             services.ConfigureSwaggerGen(options =>
             {
@@ -49,9 +56,9 @@ namespace Symbaroum.Database
                         Description = "API for accessing the Symbaroum.Database",
                         TermsOfService = "None"
                     }
-                 );
+                );
 
-                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, pathToDoc);
+                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, swaggerConfig.XmlCommentsFileName);
                 options.IncludeXmlComments(filePath);
                 options.DescribeAllEnumsAsStrings();
             });
