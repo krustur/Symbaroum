@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Database", "Symbaroum.Database\Symbaroum.Database.csproj", "{515A51A1-A7C6-457F-974B-08CAA5F59A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Infrastructure", "Symbaroum.Infrastructure\Symbaroum.Infrastructure.csproj", "{97C38796-9384-4E64-8E68-6E401EFCED31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symbaroum.Infrastructure", "Symbaroum.Infrastructure\Symbaroum.Infrastructure.csproj", "{3570DD15-3168-4F4D-A02C-59DDC09625D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{515A51A1-A7C6-457F-974B-08CAA5F59A04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97C38796-9384-4E64-8E68-6E401EFCED31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97C38796-9384-4E64-8E68-6E401EFCED31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97C38796-9384-4E64-8E68-6E401EFCED31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97C38796-9384-4E64-8E68-6E401EFCED31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3570DD15-3168-4F4D-A02C-59DDC09625D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3570DD15-3168-4F4D-A02C-59DDC09625D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3570DD15-3168-4F4D-A02C-59DDC09625D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3570DD15-3168-4F4D-A02C-59DDC09625D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
