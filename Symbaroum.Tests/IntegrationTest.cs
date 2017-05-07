@@ -34,9 +34,9 @@ namespace Symbaroum.Tests
         }
 
         [TestMethod]
-        public void AlwaysFalse()
+        public void AlwaysTrue()
         {
-            Assert.IsTrue(false);
+            Assert.IsTrue(true);
         }
 
         //        // you don't want any of these executed automatically
